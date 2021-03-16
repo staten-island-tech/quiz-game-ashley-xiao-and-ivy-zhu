@@ -41,21 +41,35 @@ const answerChoices = document.getElementsByClassName('answer')
 const nextButton = document.getElementById('next-btn')
 const questionElement = document.getElementById('question')
 const answerElement = document.getElementsByClassName('answer')
+const choiceA = document.getElementById('choice-a')
+const choiceB = document.getElementById('choice-b')
+const choiceC = document.getElementById('choice-c')
+const choiceD = document.getElementById('choice-d')
 
 Array.from(answerChoices).forEach(function(answers){
     answers.addEventListener('click', nextAppear)
+    answers.addEventListener('click', highlighted)
 });
 
 const answersOne = quizQuestions[0].answers
+choiceA.innerText = answersOne[0].option
+choiceB.innerText = answersOne[1].option
+choiceC.innerText = answersOne[2].option
+choiceD.innerText = answersOne[3].option
 
+/*
 Array.from(answerElement).forEach(function(choice){
-    choice.innerText = answersOne.option
-});
+    choice.innerText = answersOne.a
+}); */
 
 questionElement.innerText = quizQuestions[0].question
 
 function nextAppear () {
     nextButton.classList.remove('hidden')
+}
+
+function highlighted () {
+    
 }
 
 nextButton.addEventListener('click', nextQuestion)
