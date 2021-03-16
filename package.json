@@ -6,10 +6,12 @@
   "dependencies": {
     "parcel-bundler": "^1.12.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.2"
+  },
   "scripts": {
-    "start": "parcel src/index.html" , 
-    "build-prod" :"parcel build src/index.html"
+    "start": "parcel src/index.html",
+    "build-prod": "parcel build src/index.html"
   },
   "repository": {
     "type": "git",
