@@ -9,19 +9,24 @@
 </head>
 <body>
     <div class="quiz-game">
-        <header class="header">Quiz Name</header>
+        <header class="header">IQ Test</header>
         <div class="quiz">
-            <div id="question">Question</div>
+            <div id="start-btn">Start</div>
+            <div id="question" class="hidden">Question</div>
             <div id="answer-choices">
-                <div id= "choice-a" class="btn answer">Choice 1</div>
-                <div id= "choice-b" class="btn answer">Choice 2</div>
-                <div id= "choice-c" class="btn answer">Choice 3</div>
-                <div id= "choice-d" class="btn answer">Choice 4</div>
+                <div id= "choice-a" class="answer hidden">Choice 1</div>
+                <div id= "choice-b" class="answer hidden">Choice 2</div>
+                <div id= "choice-c" class="answer hidden">Choice 3</div>
+                <div id= "choice-d" class="answer hidden">Choice 4</div>
             </div>
             <div class="navigation">
-                <div class="nav-btn submit hidden">Submit</div>
-                <div class="btn nav-btn hidden" id="next-btn">Next</div>
-                <div class="btn nav-btn hidden" id="back-btn">Back</div>
+                <div id="submit" class="nav-btn hidden">Submit</div>
+                <div class="nav-btn hidden" id="next-btn">Next</div>
+            </div>
+            <div id="results" class="hidden">
+                <h1 id="result-header">You scored an IQ of</h1>
+                <p id="iq-result">#</p>
+                <div id="retake" class="btn">Retake Quiz</div>
             </div>
         </div>
     </div>

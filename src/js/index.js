@@ -1,14 +1,6 @@
 const quizQuestions = [
     {
-        question: "What's 2+2?",
-        answers: [
-            { option: "22", correct: false},
-            { option: "4", correct: true},
-            { option: "1", correct: false},
-            { option: "None of the above", correct: false},
-        ]
-    },
-    {
+        number: 1,
         question: "Johnny had 15 apples and ate 12. What is Johnny's name?",
         answers: [
             { option: "Three", correct: false},
@@ -18,6 +10,17 @@ const quizQuestions = [
         ]
     },
     {
+        number: 2,
+        question: "What's 2+2?",
+        answers: [
+            { option: "22", correct: false},
+            { option: "4", correct: true},
+            { option: "1", correct: false},
+            { option: "None of the above", correct: false},
+        ]
+    },
+    {
+        number: 3,
         question: "The Sun weighs approximately 1.989 × 10^30 kg. Using this information, what planet do we live on?",
         answers: [
             { option: "The Sun", correct: false},
@@ -27,6 +30,7 @@ const quizQuestions = [
         ]
     },
     {
+        number: 4,
         question: "'Привет', 'Bonjour', and 'Hola' means 'hello' in different languages. With this information, what is 'Bye' in English? ",
         answers: [
             { option: "Hello/Hi", correct: false},
@@ -37,59 +41,54 @@ const quizQuestions = [
     },
 ];
 
+const startButton = document.getElementById('start-btn')
+const questionElement = document.getElementById('question')
+const answerContainer = document.getElementById('answer-choices')
 const answerChoices = document.getElementsByClassName('answer')
 const nextButton = document.getElementById('next-btn')
-const questionElement = document.getElementById('question')
-const answerElement = document.getElementsByClassName('answer')
-const choiceA = document.getElementById('choice-a')
-const choiceB = document.getElementById('choice-b')
-const choiceC = document.getElementById('choice-c')
-const choiceD = document.getElementById('choice-d')
+let currentQuestion
 
-Array.from(answerChoices).forEach(function(answers){
-    answers.addEventListener('click', nextAppear)
-    answers.addEventListener('click', highlighted)
-});
+startButton.addEventListener('click', startGame)
 
-const answersOne = quizQuestions[0].answers
-choiceA.innerText = answersOne[0].option
-choiceB.innerText = answersOne[1].option
-choiceC.innerText = answersOne[2].option
-choiceD.innerText = answersOne[3].option
-
-/*
-Array.from(answerElement).forEach(function(choice){
-    choice.innerText = answersOne.a
-}); */
-
-questionElement.innerText = quizQuestions[0].question
-
-function nextAppear () {
-    nextButton.classList.remove('hidden')
+function startGame() {
+    startButton.classList.add('hidden')
+    questionElement.classList.remove('hidden')
+    Array.from(answerChoices).forEach(function(answers){
+        answers.classList.remove('hidden')
+    });
+    currentQuestion = 0 //acts as the index to be used later
+    nextQuestion()
 }
-
-function highlighted () {
-    
-}
-
-nextButton.addEventListener('click', nextQuestion)
 
 function nextQuestion() {
-    
+    changeQuestion()
+    showQuestion(quizQuestions[currentQuestion])
 }
 
-function showQuestion(question){
-    
+function showQuestion(question) {
+    questionElement.innerText = question.question
+    question.answers.forEach(answer => {
+       const button = document.createElement('div') //adding answer choices for the question
+       button.innerText = answer.option
+       button.classList.add('answer')
+       if (answer.correct) {
+           button.dataset.correct = answer.correct //tells us when the answer selected is correct or not
+       }
+       button.addEventListener('click', chosenAnswer)
+       answerContainer.appendChild(button) //adds child to the end of a parent element
+    })
 }
 
-function previousQuestion() {
-
+function changeQuestion() {
+    nextButton.classList.add('hidden')
+    while (answerContainer.firstChild) {
+        answerContainer.removeChild(answerContainer.firstChild) //removes first child in the answer choices container (original question choices)
+    }
 }
 
-function results() {
+function chosenAnswer() {}
 
-}
+function submitQuiz() {}
 
-// nextButton.addEventListener('click', nextQuestion);
-// backButton.addEventListener('click', previousQuestion);
-// submitButton.addEventListener('click', results);
+function retakeQuiz() {}
+
