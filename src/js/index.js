@@ -46,49 +46,77 @@ const questionElement = document.getElementById('question')
 const answerContainer = document.getElementById('answer-choices')
 const answerChoices = document.getElementsByClassName('answer')
 const nextButton = document.getElementById('next-btn')
+const submitButton = document.getElementById('submit')
+const endResults = document.getElementById('results')
+const retakeButton = document.getElementById('retake')
 let currentQuestion
 
 startButton.addEventListener('click', startGame)
+nextButton.addEventListener('click', () => {
+    currentQuestion++ //adds 1 to the current index when next button is clicked (changes the question)
+    nextQuestion()
+})
+submitButton.addEventListener('click', showResults)
+retakeButton.addEventListener('click', retakeQuiz)
 
-function startGame() {
+
+function startGame() { //what happens when you press the start button or restart button (sets the first question)
     startButton.classList.add('hidden')
     questionElement.classList.remove('hidden')
     Array.from(answerChoices).forEach(function(answers){
         answers.classList.remove('hidden')
-    });
+    }); //adding and removing hidden classes to different elements so the question appears
     currentQuestion = 0 //acts as the index to be used later
-    nextQuestion()
+    nextQuestion() 
 }
 
-function nextQuestion() {
+function nextQuestion() { //sets the question
     changeQuestion()
-    showQuestion(quizQuestions[currentQuestion])
+    showQuestion(quizQuestions[currentQuestion]) // the question list and the index of the first question (specified that index is 0 in startGame)
 }
 
-function showQuestion(question) {
+function showQuestion(question) { //changes the text on each element to match new question
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
        const button = document.createElement('div') //adding answer choices for the question
-       button.innerText = answer.option
+       button.innerText = answer.option //text in the buttons created as the answer choices
        button.classList.add('answer')
-       if (answer.correct) {
-           button.dataset.correct = answer.correct //tells us when the answer selected is correct or not
-       }
        button.addEventListener('click', chosenAnswer)
        answerContainer.appendChild(button) //adds child to the end of a parent element
-    })
+    });
 }
 
-function changeQuestion() {
+function changeQuestion() { //goes to next question after pressing next button
     nextButton.classList.add('hidden')
     while (answerContainer.firstChild) {
-        answerContainer.removeChild(answerContainer.firstChild) //removes first child in the answer choices container (original question choices)
+        answerContainer.removeChild(answerContainer.firstChild) //removes previous quesion (first child) so that only the new question stays
     }
 }
 
-function chosenAnswer() {}
+function chosenAnswer() {
+    if (currentQuestion === quizQuestions.length -1) {
+        submitButton.classList.remove('hidden')
+    } else {
+        nextButton.classList.remove('hidden')
+    }
+}
 
-function submitQuiz() {}
+function showResults() {
+    questionElement.classList.add('hidden')
+    while (answerContainer.firstChild) {
+        answerContainer.removeChild(answerContainer.firstChild)
+    }
+    endResults.classList.remove('hidden')
+    submitButton.classList.add('hidden')
+}
 
-function retakeQuiz() {}
+function retakeQuiz() {
+    results.classList.add('hidden')
+    questionElement.classList.remove('hidden')
+    Array.from(answerChoices).forEach(function(answers){
+        answers.classList.remove('hidden')
+    }); 
+    currentQuestion = 0 
+    nextQuestion() 
+}
 
