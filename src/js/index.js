@@ -1,3 +1,4 @@
+import { DOMselectors } from "./DOMselectors"
 const quizQuestions = [
     {
         question: "Johnny had 15 apples and ate 12. What is Johnny's name?",
@@ -38,14 +39,6 @@ const quizQuestions = [
     },
 ];
 
-const startButton = document.getElementById('start-btn')
-const questionElement = document.getElementById('question')
-const answerContainer = document.getElementById('answer-choices')
-const answerChoices = document.getElementsByClassName('answer')
-const nextButton = document.getElementById('next-btn')
-const submitButton = document.getElementById('submit')
-const endResults = document.getElementById('results')
-const retakeButton = document.getElementById('retake')
 let currentQuestion 
 let currentScore
 let score
