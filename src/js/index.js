@@ -1,16 +1,15 @@
 const quizQuestions = [
     {
-        number: 1,
         question: "Johnny had 15 apples and ate 12. What is Johnny's name?",
+        correctAnswer: "Johnny",
         answers: [
             { option: "Three", correct: false},
             { option: "Apple", correct: false},
             { option: "Hungry", correct: false},
             { option: "Johnny", correct: true},
-        ]
+        ],
     },
     {
-        number: 2,
         question: "What's 2+2?",
         answers: [
             { option: "22", correct: false},
@@ -20,7 +19,6 @@ const quizQuestions = [
         ]
     },
     {
-        number: 3,
         question: "The Sun weighs approximately 1.989 × 10^30 kg. Using this information, what planet do we live on?",
         answers: [
             { option: "The Sun", correct: false},
@@ -30,7 +28,6 @@ const quizQuestions = [
         ]
     },
     {
-        number: 4,
         question: "'Привет', 'Bonjour', and 'Hola' means 'hello' in different languages. With this information, what is 'Bye' in English? ",
         answers: [
             { option: "Hello/Hi", correct: false},
@@ -49,7 +46,9 @@ const nextButton = document.getElementById('next-btn')
 const submitButton = document.getElementById('submit')
 const endResults = document.getElementById('results')
 const retakeButton = document.getElementById('retake')
-let currentQuestion
+let currentQuestion 
+let currentScore
+let score
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
@@ -67,6 +66,7 @@ function startGame() { //what happens when you press the start button or restart
         answers.classList.remove('hidden')
     }); //adding and removing hidden classes to different elements so the question appears
     currentQuestion = 0 //acts as the index to be used later
+    score = 0
     nextQuestion() 
 }
 
@@ -78,11 +78,21 @@ function nextQuestion() { //sets the question
 function showQuestion(question) { //changes the text on each element to match new question
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
-       const button = document.createElement('div') //adding answer choices for the question
-       button.innerText = answer.option //text in the buttons created as the answer choices
-       button.classList.add('answer')
-       button.addEventListener('click', chosenAnswer)
-       answerContainer.appendChild(button) //adds child to the end of a parent element
+        const button = document.createElement('div') //adding answer choices for the question
+        button.innerText = answer.option //text in the buttons created as the answer choices
+        button.classList.add('answer')
+        button.addEventListener('click', chosenAnswer)
+        answerContainer.appendChild(button) //adds child to the end of a parent element
+
+        button.addEventListener('click', scores)
+        function scores() {
+        if (answer.correct === true) {
+            score = score + 1
+        } else {
+            score = score - 1 
+        }
+        console.log(score)
+    }
     });
 }
 
@@ -91,6 +101,7 @@ function changeQuestion() { //goes to next question after pressing next button
     while (answerContainer.firstChild) {
         answerContainer.removeChild(answerContainer.firstChild) //removes previous quesion (first child) so that only the new question stays
     }
+    
 }
 
 function chosenAnswer() {
@@ -117,6 +128,7 @@ function retakeQuiz() {
         answers.classList.remove('hidden')
     }); 
     currentQuestion = 0 
+    score = 0
     nextQuestion() 
 }
 
