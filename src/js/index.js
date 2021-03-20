@@ -1,13 +1,12 @@
-import { DOMselectors } from "./DOMselectors"
 const quizQuestions = [
     {
         question: "Johnny had 15 apples and ate 12. What is Johnny's name?",
         correctAnswer: "Johnny",
         answers: [
-            { option: "Three", correct: false},
-            { option: "Apple", correct: false},
-            { option: "Hungry", correct: false},
-            { option: "Johnny", correct: true},
+            { option: "Three", correct: false, choice: 1},
+            { option: "Apple", correct: false, choice: 2},
+            { option: "Hungry", correct: false, choice: 3},
+            { option: "Johnny", correct: true, choice: 4},
         ],
     },
     {
@@ -39,8 +38,17 @@ const quizQuestions = [
     },
 ];
 
-let currentQuestion 
-let currentScore
+const startButton = document.getElementById('start-btn')
+const questionElement = document.getElementById('question')
+const answerContainer = document.getElementById('answer-choices')
+const answerChoices = document.getElementsByClassName('answer')
+const nextButton = document.getElementById('next-btn')
+const submitButton = document.getElementById('submit')
+const endResults = document.getElementById('results')
+const retakeButton = document.getElementById('retake')
+const scoreResult = document.getElementById('iq-result')
+const resultComment = document.getElementById('result-comment')
+let currentQuestion
 let score
 
 startButton.addEventListener('click', startGame)
@@ -79,15 +87,32 @@ function showQuestion(question) { //changes the text on each element to match ne
 
         button.addEventListener('click', scores)
         function scores() {
-        if (answer.correct === true) {
-            score = score + 1
-        } else {
-            score = score - 1 
-        }
+            if (answer.correct === true) {
+             score = score + 1
+            } else {
+             score = score - 1 
+            }
         console.log(score)
-    }
+        }
+        
     });
 }
+
+/*
+button.addEventListener('click', highlighted)
+
+function highlighted() {
+            button.classList.remove('selected')
+                if (answer.choice === 1){
+                    const answer1 = answer.choice === 1
+                    answer1.classList.add('selected')
+                } 
+            }
+            
+            if (answer.choice === 2){
+                button.classList.add('selected')
+} 
+*/
 
 function changeQuestion() { //goes to next question after pressing next button
     nextButton.classList.add('hidden')
@@ -112,6 +137,24 @@ function showResults() {
     }
     endResults.classList.remove('hidden')
     submitButton.classList.add('hidden')
+    if (score > 6) {
+        scoreResult.innerText = 170 + score
+        resultComment.innerText = "Wow! You're as smart as Einstein."
+    } else if (score < 3) {
+        scoreResult.innerText = 80 + score
+        resultComment.innerText = "Not bad! A little below average."
+    } else {
+        scoreResult.innerText = 100 + score
+        resultComment.innerText = "Good work! You're kinda smart."
+    }
+    if (score === 0){
+        scoreResult.innerText = 65
+        resultComment.innerText = "Pretty good for such a hard test."
+    }
+    if (score < 0) {
+        scoreResult.innerText = 60 + score
+        resultComment.innerText = "Don't worry, my IQ is lower."
+    }
 }
 
 function retakeQuiz() {

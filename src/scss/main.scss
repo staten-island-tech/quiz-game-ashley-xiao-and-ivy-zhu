@@ -115,17 +115,15 @@ body {
     color: black;
   }
 
-  .results {
+  #results {
       color:white;
       font-size: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      width: 50%;
   }
 
   #result-header {
       font-size: 3rem;
+      text-align: center;
   }
 
   #iq-result {
@@ -139,4 +137,14 @@ body {
       padding: 1rem;
       text-align: center;
       border: white solid 1px;
+  }
+
+  #result-comment {
+      text-align: center;
+      font-size: 2rem;
+  }
+
+  #result-text {
+      text-align: center;
+      font-size: 2rem;
   }
