@@ -54,6 +54,15 @@ const quizQuestions = [
             { option: "Antarctica", correct: false},
         ]
     },
+    {
+        question: "Train A is travling at 70 mph while train B is traveling at a slower speed of 65 mph. What is the speed of train A when it stops at a station?",
+        answers: [
+            { option: "135 mph", correct: false},
+            { option: "5 mph", correct: false},
+            { option: "70 mph", correct: false},
+            { option: "0 mph", correct: true},
+        ]
+    },
 ];
 
 export { quizQuestions }
