@@ -1,53 +1,6 @@
-const quizQuestions = [
-    {
-        question: "Johnny had 15 apples and ate 12. What is Johnny's name?",
-        correctAnswer: "Johnny",
-        answers: [
-            { option: "Three", correct: false, choice: 1},
-            { option: "Apple", correct: false, choice: 2},
-            { option: "Hungry", correct: false, choice: 3},
-            { option: "Johnny", correct: true, choice: 4},
-        ],
-    },
-    {
-        question: "What's 2+2?",
-        answers: [
-            { option: "22", correct: false},
-            { option: "4", correct: true},
-            { option: "1", correct: false},
-            { option: "None of the above", correct: false},
-        ]
-    },
-    {
-        question: "The Sun weighs approximately 1.989 × 10^30 kg. Using this information, what planet do we live on?",
-        answers: [
-            { option: "The Sun", correct: false},
-            { option: "Earth", correct: true},
-            { option: "Saturn", correct: false},
-            { option: "The Moon", correct: false},
-        ]
-    },
-    {
-        question: "'Привет', 'Bonjour', and 'Hola' means 'hello' in different languages. With this information, what is 'Bye' in English? ",
-        answers: [
-            { option: "Hello/Hi", correct: false},
-            { option: "Adios", correct: false},
-            { option: "Bye", correct: true},
-            { option: "до свидания", correct: false},
-        ]
-    },
-];
+import { quizQuestions } from "./questions"
+import { startButton, questionElement, answerContainer, answerChoices, nextButton, submitButton, endResults, retakeButton, scoreResult, resultComment } from "./dom"
 
-const startButton = document.getElementById('start-btn')
-const questionElement = document.getElementById('question')
-const answerContainer = document.getElementById('answer-choices')
-const answerChoices = document.getElementsByClassName('answer')
-const nextButton = document.getElementById('next-btn')
-const submitButton = document.getElementById('submit')
-const endResults = document.getElementById('results')
-const retakeButton = document.getElementById('retake')
-const scoreResult = document.getElementById('iq-result')
-const resultComment = document.getElementById('result-comment')
 let currentQuestion
 let score
 
@@ -93,26 +46,10 @@ function showQuestion(question) { //changes the text on each element to match ne
              score = score - 1 
             }
         console.log(score)
-        }
+        } 
         
     });
 }
-
-/*
-button.addEventListener('click', highlighted)
-
-function highlighted() {
-            button.classList.remove('selected')
-                if (answer.choice === 1){
-                    const answer1 = answer.choice === 1
-                    answer1.classList.add('selected')
-                } 
-            }
-            
-            if (answer.choice === 2){
-                button.classList.add('selected')
-} 
-*/
 
 function changeQuestion() { //goes to next question after pressing next button
     nextButton.classList.add('hidden')
@@ -145,7 +82,7 @@ function showResults() {
         resultComment.innerText = "Not bad! A little below average."
     } else {
         scoreResult.innerText = 100 + score
-        resultComment.innerText = "Good work! You're kinda smart."
+        resultComment.innerText = "Wow, how did you even solve those questions?"
     }
     if (score === 0){
         scoreResult.innerText = 65

@@ -28,12 +28,30 @@ const quizQuestions = [
         ]
     },
     {
-        question: "'Привет', 'Bonjour', and 'Hola' means 'hello' in different languages. With this information, what is 'Bye' in English? ",
+        question: "'Привет', 'Bonjour', and 'Hola' means 'hello' in different languages. With this information, what is 'Bye' in English?",
         answers: [
             { option: "Hello/Hi", correct: false},
             { option: "Adios", correct: false},
             { option: "Bye", correct: true},
             { option: "до свидания", correct: false},
+        ]
+    },
+    {
+        question: "Unscramble the letters: crocodile. What does it spell?",
+        answers: [
+            { option: "crocodile", correct: true},
+            { option: "raccoon", correct: false},
+            { option: "cocoridle", correct: false},
+            { option: "Does not spell a word", correct: false},
+        ]
+    },
+    {
+        question: "Hinduism, Buddhism, and Islam were some religions practiced in Southeast Asia. Where is Southeast Asia located?",
+        answers: [
+            { option: "California", correct: false},
+            { option: "Asia", correct: true},
+            { option: "Europe", correct: false},
+            { option: "Antarctica", correct: false},
         ]
     },
 ];
