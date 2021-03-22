@@ -35,7 +35,7 @@ function showQuestion(question) { //changes the text on each element to match ne
         const button = document.createElement('div') //adding answer choices for the question
         button.innerText = answer.option //text in the buttons created as the answer choices
         button.classList.add('answer')
-        button.addEventListener('click', chosenAnswer)
+        button.addEventListener('click', showButton)
         answerContainer.appendChild(button) //adds child to the end of a parent element
 
         button.addEventListener('click', scores)
@@ -59,7 +59,7 @@ function changeQuestion() { //goes to next question after pressing next button
     
 }
 
-function chosenAnswer() {
+function showButton() { //shows either submit button or next button
     if (currentQuestion === quizQuestions.length -1) {
         submitButton.classList.remove('hidden')
     } else {
