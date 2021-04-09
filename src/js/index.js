@@ -79,7 +79,7 @@ function showResults() {
 
     if (score > 6) {
         DOMselectors.scoreResult.innerText = 170 + score
-        DOMselectors.resultComment.innerText = "Wow! You're as smart as Einstein."
+        DOMselectors.resultComment.innerText = "Wow! You're smarter than Einstein."
     } else if (score === 0){
         DOMselectors.scoreResult.innerText = 65
         DOMselectors.resultComment.innerText = "Pretty good for such a hard test."
