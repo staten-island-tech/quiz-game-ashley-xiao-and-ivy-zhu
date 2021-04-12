@@ -47,9 +47,7 @@ function showQuestion(question) { //changes the text on each element to match ne
             } else {
              score = score - 1 
             }
-        console.log(score)
         } 
-        
     });
 }
 
